@@ -14,7 +14,8 @@ interface Props {
 const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
   
   const navigate=useNavigate();
-  const [isCurrent, setIsCurrent] = useState(false)
+  const [toggleTodo, setToggleTodo] = useState(false)
+  const [formatedDate, setFormatedDate] = useState('')
   // console.log(currDate,'val');
 
   const startDate =startOfMonth(currDate)
@@ -31,12 +32,14 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
 
   const handleClickDate = (index:number)=> {
     const date = setDate(currDate,index);
+    setToggleTodo(!toggleTodo)
     const formatedDate =format(date,'dd-MM-yyyy')
-    console.log (formatedDate,'onclicking formatted date');
-    console.log (date,'onclicking date');
+    setFormatedDate(formatedDate)
+    // console.log (formatedDate,'onclicking formatted date');
+    // console.log (date,'onclicking date');
     
     onChangeFn(date)
-    navigate(`/todo/${formatedDate}`)
+    // navigate(`/todo/${formatedDate}`)
   }
 
   // console.log(prefixDays , sufixDays);
@@ -46,9 +49,11 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
   return (
     <div className="wrapper">
       <header>
+      <div className="icons">
           <span onClick={preYear} id="prev" className="material-symbols-rounded">chevron_left</span>
           <span onClick={nextYear} id="next" className="material-symbols-rounded">chevron_right</span>
         <p className="current-date">{format(currDate,"dd LLLL yyyy")}</p>
+        </div>
         <div className="icons">
           <span onClick={preMonth} id="prev" className="material-symbols-rounded">chevron_left</span>
           <span onClick={nextMonth} id="next" className="material-symbols-rounded">chevron_right</span>
@@ -91,7 +96,7 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
         </ul>
         
       </div>
-      <TodoStrike/>
+      {toggleTodo && <TodoStrike formatedDate={formatedDate} />}
     </div>
   )
 }
