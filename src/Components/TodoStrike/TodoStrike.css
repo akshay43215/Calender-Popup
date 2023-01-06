@@ -45,14 +45,24 @@
     letter-spacing: 3px;
     line-height: 3rem;
 }
-.todo-container >button {
-    background-color: rgb(203, 229, 240);
+.btn-groups {
+    width: 100%;
     position: absolute;
+    left: 5px;
+    bottom: 10px;
+    display: flex;
+    
+}
+.btn-groups button {
+    width: 50%;
+    margin-right: 10px;
+    background-color: rgb(203, 229, 240);
+    /* position: absolute;
     bottom: 20px;
-    right: 160px;
+    right: 160px; */
 }
 
-.todo-map button:hover {
+.btn-groups button:hover {
     background-color: rgb(43, 35, 35);
     color: aliceblue;
 }
