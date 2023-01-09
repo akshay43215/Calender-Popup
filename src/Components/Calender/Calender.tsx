@@ -16,7 +16,7 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
   const navigate=useNavigate();
   const [toggleTodo, setToggleTodo] = useState(false)
   const [formatedDate, setFormatedDate] = useState('')
-  // console.log(currDate,'val');
+  console.log(currDate,'val');
 
   const startDate =startOfMonth(currDate)
   const endDate =endOfMonth(currDate)
@@ -39,7 +39,6 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
     // console.log (date,'onclicking date');
     
     onChangeFn(date)
-    // navigate(`/todo/${formatedDate}`)
   }
 
   // console.log(prefixDays , sufixDays);
@@ -79,12 +78,14 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
           {
             Array.from({length:numDays}).map((val,idx)=> {
               const date =idx+1;
-               date===currDate.getDate() && console.log('current date highlight',date);
+              let clasVal
+               date===currDate.getDate()? clasVal='active': clasVal=''
+               
                
               // console.log(val,idx,date);
               
               return(
-                <li key={date} onClick={()=>handleClickDate(date)}> {date} </li>
+                <li key={date} onClick={()=>handleClickDate(date)} className={clasVal}> {date} </li>
               )
             })
           }

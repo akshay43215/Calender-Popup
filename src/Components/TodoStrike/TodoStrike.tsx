@@ -13,19 +13,12 @@ interface itemsType {
   id: number;
   // key?: string|undefined;
   val: string;
-  // checked: boolean
 }
 
 const TodoStrike :React.FC<props>=({formatedDate})=> {
   const [txtContent, settxtContent] = useState('');
   const [check, setCheck] = useState(false);
   const [items, setItems] = useState<itemsType[]>([]);
-
-  // const navigate=useNavigate(/);
-
-  // const {idParam} = useParams()
-  // console.log(typeof idParam);
-  
 
   const formSub = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,59 +56,55 @@ const TodoStrike :React.FC<props>=({formatedDate})=> {
     
   }
   const searchTodo=()=> {
-    console.log(localStorage);
     
-    if ('hello'){
-      const responseLocal =JSON.parse((localStorage.getItem(formatedDate|| '')) ||'')
-      // console.log(typeof responseLocal ,responseLocal);
-      setItems(responseLocal)
-      // console.log(JSON.parse(responseLocal))
-      console.log(items);
-    }else {
-      window.alert('else part no local');
-      
+    try {
+      const responseLocal =JSON.parse(localStorage.getItem(formatedDate||'')||'')
+      if(responseLocal){
+        setItems(responseLocal)
+      }
+    } catch (error) {
+      window.alert('Catch error block'+error)
     }
-
     
       // const responseLocal =JSON.parse((localStorage.getItem(formatedDate|| '')) ||'')
+
+      // const responseLocal =JSON.parse(localStorage.getItem(`"${formatedDate}"`)||'')
       // console.log(typeof responseLocal ,responseLocal);
-      // setItems(responseLocal)
-      // // console.log(JSON.parse(responseLocal))
-      // console.log(items);
-    
-    
-    // console.log( localStorage.getItem(formatedDate|| "") )
-    // console.log(responseLocal);
-    
+      // console.log(responseLocal);
+      
+      // if(responseLocal){
+      //   setItems(responseLocal)
+      // }
+      // console.log(JSON.parse(responseLocal))
+      console.log(items);
+
   }
-  // console.log(txtContent);
+    return (
+      <div className="todo-container">
+        <form action="" onSubmit={formSub}>
+          <input type="text" value={txtContent} onChange={(e) => { settxtContent(e.target.value) }} />
+        </form>
 
-  return (
-    <div className="todo-container">
-      <form action="" onSubmit={formSub}>
-        <input type="text" value={txtContent} onChange={(e) => { settxtContent(e.target.value) }} />
-      </form>
-
-      <ul>
-        {items.map((itm, k) => {
-          const id = itm.id;
-          // console.log(check);
-          
-          return (
-            <div key={k} className="todo-map">
-              <li> {itm.val} </li>
-              <button onClick={() => deleteItm(itm)}> Delete </button>
-            </div>
-          );
-        })}
-      </ul>
-      <div className="btn-groups">
-        <button onClick={searchTodo}>Search</button>
-        <button onClick={saveTodo}>Save</button>
+        <ul>
+          {items.map((itm, k) => {
+            const id = itm.id;
+            // console.log(check);
+            
+            return (
+              <div key={k} className="todo-map">
+                <li> {itm.val} </li>
+                <button onClick={() => deleteItm(itm)}> Delete </button>
+              </div>
+            );
+          })}
+        </ul>
+        <div className="btn-groups">
+          <button onClick={searchTodo}>Search</button>
+          <button onClick={saveTodo}>Save</button>
+        </div>
+        {/* <h3>{txtContent}</h3> */}
       </div>
-      {/* <h3>{txtContent}</h3> */}
-    </div>
-  );
+    );
 }
 
 export default TodoStrike;

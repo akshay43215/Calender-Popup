@@ -50,6 +50,7 @@ header .icons span:hover{
 header .current-date{
   font-size: 1.45rem;
   font-weight: 500;
+  margin-left: 20px;
 }
 .calendar{
   padding: 20px;
