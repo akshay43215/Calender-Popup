@@ -27,7 +27,6 @@
     letter-spacing: 3px;
 }
 
-
 .todo-map {
     margin: 10px 0;
     display: flex;
@@ -45,24 +44,36 @@
     letter-spacing: 3px;
     line-height: 3rem;
 }
-.btn-groups {
+.close-btn{
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    border-radius: 50%;
+    color: aliceblue;
+    background-color: rgba(203, 229, 240,.10);
+}
+.close-btn:hover{
+    background-color: aliceblue;
+    color: black;
+}
+/* .btn-groups {
     width: 100%;
     position: absolute;
     left: 5px;
     bottom: 10px;
     display: flex;
     
-}
-.btn-groups button {
+} */
+/* .btn-groups button {
     width: 50%;
     margin-right: 10px;
-    background-color: rgb(203, 229, 240);
+    background-color: rgb(203, 229, 240); */
     /* position: absolute;
     bottom: 20px;
-    right: 160px; */
+    right: 160px; 
 }
-
+/* 
 .btn-groups button:hover {
     background-color: rgb(43, 35, 35);
     color: aliceblue;
-}
+} */

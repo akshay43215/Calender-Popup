@@ -1,22 +1,27 @@
 
 import { add, differenceInDays, endOfMonth, setDate, startOfMonth, sub } from 'date-fns';
 import { format } from 'date-fns/esm';
-import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
-import './Calender.css'
 import TodoStrike from '../TodoStrike/TodoStrike';
+import './Calender.css'
 
 interface Props {
   currDate?: Date ;
   onChangeFn: (currDate:Date)=> void 
 }
 
+interface itemsType {
+  id: number;
+  val: string;
+  // key?: string|undefined;
+}
+
 const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
   
-  const navigate=useNavigate();
   const [toggleTodo, setToggleTodo] = useState(false)
   const [formatedDate, setFormatedDate] = useState('')
-  console.log(currDate,'val');
+  const [getlocal, setgetlocal] = useState<itemsType[]>([])
+  // console.log(currDate,'val');
 
   const startDate =startOfMonth(currDate)
   const endDate =endOfMonth(currDate)
@@ -32,15 +37,28 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
 
   const handleClickDate = (index:number)=> {
     const date = setDate(currDate,index);
+    // console.log(date);
+    
     setToggleTodo(!toggleTodo)
     const formatedDate =format(date,'dd-MM-yyyy')
     setFormatedDate(formatedDate)
     // console.log (formatedDate,'onclicking formatted date');
     // console.log (date,'onclicking date');
+    // try{
+    // const responseLocal =JSON.parse(localStorage.getItem(formatedDate||'')||'')
+    //   if(responseLocal){
+    //     setgetlocal(responseLocal)
+    //   }
+    // } catch (error) {
+    //   // window.alert('Catch error block '+error)
+    //   console.log('Catch error block '+error)
+    // }
     
     onChangeFn(date)
   }
-
+// const setToggleTodo=(val:boolean)=>{
+//   console.log('toggletodo',val);
+// }
   // console.log(prefixDays , sufixDays);
   // console.log(startDate,endDate,numDays);
   
@@ -72,32 +90,30 @@ const Calender : React.FC<Props> = ({currDate= new Date(),onChangeFn})=> {
         <ul className="days">
           {
             Array.from({length:prefixDays}).map((val,idx)=> {
-              return <li key={idx}></li>
+              return <li key={idx} className='inactive'></li>
             })
           }
           {
             Array.from({length:numDays}).map((val,idx)=> {
-              const date =idx+1;
+              const day =idx+1;
               let clasVal
-               date===currDate.getDate()? clasVal='active': clasVal=''
-               
-               
+               day===currDate.getDate()? clasVal='active': clasVal=''
               // console.log(val,idx,date);
-              
               return(
-                <li key={date} onClick={()=>handleClickDate(date)} className={clasVal}> {date} </li>
+                <li key={day} onClick={()=>handleClickDate(day)} className={clasVal}> {day} </li>
               )
             })
           }
           {
             Array.from({length:sufixDays}).map((val,idx)=> {
-              return <li key={idx}></li>
+              return <li key={idx} className='inactive'></li>
             })
           }
         </ul>
         
       </div>
-      {toggleTodo && <TodoStrike formatedDate={formatedDate} />}
+      {toggleTodo && <TodoStrike formatedDate={formatedDate} setToggleTodo={setToggleTodo}  />}
+      {/* toggleTodo={toggleTodo} setToggleTodo={setToggleTodo}  */}
     </div>
   )
 }

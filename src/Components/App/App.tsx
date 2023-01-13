@@ -1,5 +1,4 @@
 import Calender from "../Calender/Calender";
-import {Routes,Route} from "react-router-dom";
 import { useState } from "react";
 import TodoStrike from "../TodoStrike/TodoStrike";
 import TodoTwo from "../TodoStrike/todoTwo";
@@ -10,10 +9,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path='/' element={<Calender currDate={currDate} onChangeFn={setCurrDate} />} />
-        <Route path='/todo/:idParam' element={<TodoStrike />} />
-      </Routes>
+      <Calender currDate={currDate} onChangeFn={setCurrDate} />
     </div>
   );
 };

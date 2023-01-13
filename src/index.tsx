@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./Components/App/App";
 import React from "react";
@@ -9,9 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
       <App />
-    </Router>
   </React.StrictMode>
 );
 
