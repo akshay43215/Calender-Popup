@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Calender currDate={currDate} onChangeFn={setCurrDate} />
+      <Calender currDate={currDate} setCurrDate={setCurrDate} />
     </div>
   );
 };
