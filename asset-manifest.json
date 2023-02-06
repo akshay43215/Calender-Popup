@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/akshay43215/static/css/main.3e123f64.css",
+    "main.js": "/akshay43215/static/js/main.1743a51c.js",
+    "index.html": "/akshay43215/index.html",
+    "main.3e123f64.css.map": "/akshay43215/static/css/main.3e123f64.css.map",
+    "main.1743a51c.js.map": "/akshay43215/static/js/main.1743a51c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e123f64.css",
+    "static/js/main.1743a51c.js"
+  ]
+}
